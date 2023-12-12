@@ -20,5 +20,7 @@ export default defineConfig({
     globals: true,
     testMatch: ['**/*.test.ts?(x)'],
     setupFiles: ['./src/testing/setupTests.ts']
-  }
+  },
+
+  appType: 'spa'
 });
