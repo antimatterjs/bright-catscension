@@ -20,6 +20,9 @@ services:
           target: /usr/app/src
           ignore:
             - node_modules/
+        - action: sync
+          path: ./public
+          target: /usr/app/public
         - action: rebuild
           path: ./package.json
           target: /usr/app/package.json

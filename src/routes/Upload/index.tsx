@@ -35,6 +35,7 @@ const UploadRoute = () => {
 
     return (
         <div className="upload-page">
+            <h1>Upload your cats here!</h1>
             {fileURL && <img src={fileURL} className="preview-img" alt="Preview" />}
             <form role="form" onSubmit={handleSubmit}>
                 <label htmlFor="file">Upload a file</label>

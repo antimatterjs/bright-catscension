@@ -1,3 +1,6 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart, faCaretUp, faCaretDown } from "@fortawesome/free-solid-svg-icons";
+import { faHeart as faHeartOutline } from "@fortawesome/free-regular-svg-icons";
 import useCat from "@/data/useCat";
 
 
@@ -14,15 +17,19 @@ const CatThumb = ({ catId }: CatThumbProps) => {
               className="favourite-btn"
               onClick={() => toggleFavourite()}
               disabled={updatingFavourites}>
-                {cat.isFavourite ? 'Unfavourite' : 'Favourite'}
+                <FontAwesomeIcon icon={cat.isFavourite ? faHeart : faHeartOutline} />
             </button>
             <div className="cat-img">
-                <img src={cat.url} width={cat.width} height={cat.height} />
+                <img src={cat.url} />
             </div>
             <div role="group" className="cat-voting">
-                <button onClick={() => vote(1)}>Like</button>
+                <button onClick={() => vote(1)}>
+                    <FontAwesomeIcon icon={faCaretUp} />
+                </button>
                 <span>{cat.score}</span>
-                <button onClick={() => vote(-1)}>Dislike</button>
+                <button onClick={() => vote(-1)}>
+                    <FontAwesomeIcon icon={faCaretDown} />
+                </button>
             </div>
         </div>
     );

@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;700&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: darkmagenta;
+    --highlight: gold;
+    --highlight-tint: #f5aaaa;
+    --primary-shade: #cda434;
+    --background-light: floralwhite;
+}
+
+body {
+    font-family: 'Merriweather', serif;
+}
