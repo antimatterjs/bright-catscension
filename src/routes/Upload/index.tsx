@@ -25,11 +25,10 @@ const UploadRoute = () => {
         uploadCat(
             { file },
             {
-                onSuccess: (response) => {
-                    console.log(response);
+                onSuccess: () => {
                     navigate('/');
                 },
-                onError: (error) => setError(error)
+                onError: (error: Error) => setError(error)
             }
         );
     }

@@ -7,7 +7,7 @@ const Home = () => {
 
     return (
         <div role="listbox">
-            {cats.length ? cats.map((cat) => (
+            {cats.length ? cats.map(() => (
                 <p>cat</p>
             )) : <p>There are no cats to show</p>}
         </div>

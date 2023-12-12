@@ -1,12 +1,11 @@
-import { useCallback } from 'react';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { postCat, getCats } from './api';
-import { CatUploadData, CatUploadCallbacks } from './types';
+// import { CatUploadData, CatUploadCallbacks } from './types';
 
 
 type CatAPIHelpers = {
     cats: any;
-    uploadCat: (data: CatUploadData, callbacks: CatUploadCallbacks) => any // returns whatever type useMutation returns. Would probably have to look through tanstack's github repo to find out what that is
+    uploadCat: any // returns whatever type useMutation returns. Would probably have to look through tanstack's github repo to find out what that is
 }
 
 export default function useCatAPI(): CatAPIHelpers {

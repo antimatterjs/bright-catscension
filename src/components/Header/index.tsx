@@ -1,7 +1,7 @@
 import './Header.css';
 import { NavLink } from "react-router-dom";
 
-const Header = (props: HeaderProps) => {
+const Header = () => {
     return (
         <header>
             <h1>Bright Catscension</h1>
