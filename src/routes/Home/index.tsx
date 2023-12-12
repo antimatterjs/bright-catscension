@@ -13,7 +13,7 @@ const Home = () => {
     return (
         <div className="cats">
             {cats?.length ? cats.map((cat: Cat) => (
-                <CatThumb key={cat.id} cat={cat} />
+                <CatThumb key={cat.id} catId={cat.id} />
             )) : <p>There are no cats to show</p>}
         </div>
     )

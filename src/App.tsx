@@ -13,7 +13,15 @@ import Home from '@/routes/Home';
 import Upload from '@/routes/Upload';
 
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+            retry: false,
+            refetchOnWindowFocus: false,
+            staleTime: 1000 * 60 * 5,
+        },
+    },
+});
 
 function App() {
     return (

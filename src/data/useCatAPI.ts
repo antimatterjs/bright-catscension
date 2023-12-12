@@ -1,42 +1,48 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useCallback, useMemo } from 'react';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import * as catAPI from './api';
-import { CatVotingParams } from './types';
+import { Cat, CatVotingParams, Favourite, Vote } from './types';
 // import { CatUploadData, CatUploadCallbacks } from './types';
 
 
 type CatAPIHelpers = {
-    cats: any;
+    cats: Cat[];
+    votes: Vote[];
     uploadCat: any; // returns whatever type useMutation returns. Would probably have to look through tanstack's github repo to find out what that is
     isLoading: boolean;
-    vote: any; // same issue as uploadCat
-    toggleFavourite: (catId: string, isFavourite: boolean) => void;
+    favourites: Favourite[];
+    updatingFavourites: boolean;
 }
 
 export default function useCatAPI(): CatAPIHelpers {
+    const queryClient = useQueryClient();
+
     const { data: cats, isLoading } = useQuery({
         queryKey: ['cats'],
         queryFn: catAPI.getCats,
-        staleTime: 1000 * 60 * 5 // 5 minutes
     });
 
-    const { mutate: uploadCat } = useMutation({ mutationFn: catAPI.postCat });
-    const { mutate: vote } = useMutation({ mutationFn: catAPI.judgeCat });
-    const { mutate: favourite } = useMutation({ mutationFn: catAPI.favouriteCat });
-    const { mutate: unfavourite } = useMutation({ mutationFn: catAPI.unfavouriteCat });
+    const { data: votes } = useQuery({
+        queryKey: ['votes'],
+        queryFn: catAPI.getVotes,
+    });
 
-    const toggleFavourite = (catId: string, isFavourite: boolean) => {
-        if (isFavourite) {
-            unfavourite(catId);
-        } else {
-            favourite(catId);
-        }
-    }
+    const { data: favourites, isFetching: updatingFavourites } = useQuery({
+        queryKey: ['favourites'],
+        queryFn: catAPI.getFavourites,
+    });
+
+    const { mutate: uploadCat } = useMutation({
+        mutationFn: catAPI.postCat,
+        onSuccess: () => queryClient.invalidateQueries(['cats'])
+    });
 
     return {
         cats,
+        votes,
         uploadCat,
         isLoading,
-        vote,
-        toggleFavourite
+        favourites,
+        updatingFavourites
     };
 }

@@ -1,28 +1,31 @@
-import { Cat } from "@/data/types";
-import useCatAPI from "@/data/useCatAPI";
+import useCat from "@/data/useCat";
 
 
 type CatThumbProps = {
-    cat: Cat;
+    catId: string;
 };
 
-const CatThumb = ({ cat }: CatThumbProps) => {
-    const { vote: voteForCat, toggleFavourite } = useCatAPI();
-
+const CatThumb = ({ catId }: CatThumbProps) => {
+    const { cat, submitVote, toggleFavourite, updatingFavourites } = useCat(catId);
+    console.log(cat);
     const vote = (score: number) => {
-        voteForCat({ id: cat.id, score});
+        submitVote({ score });
     }
 
     return (
         <div className="cat-thumb">
-            <button onClick={() => toggleFavourite(cat.id)}>
-                {cat.favourite ? 'Unfavourite' : 'Favourite'}
+            <button type="button"
+              className="favourite-btn"
+              onClick={() => toggleFavourite()}
+              disabled={updatingFavourites}>
+                {cat.isFavourite ? 'Unfavourite' : 'Favourite'}
             </button>
             <div className="cat-img">
                 <img src={cat.url} width={cat.width} height={cat.height} />
             </div>
-            <div role="group">
+            <div role="group" className="cat-voting">
                 <button onClick={() => vote(1)}>Like</button>
+                <span>{cat.score}</span>
                 <button onClick={() => vote(-1)}>Dislike</button>
             </div>
         </div>
