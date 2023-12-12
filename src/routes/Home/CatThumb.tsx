@@ -23,12 +23,12 @@ const CatThumb = ({ catId }: CatThumbProps) => {
                 <img src={cat.url} />
             </div>
             <div role="group" className="cat-voting">
-                <button onClick={() => vote(1)}>
-                    <FontAwesomeIcon icon={faCaretUp} />
-                </button>
-                <span>{cat.score}</span>
                 <button onClick={() => vote(-1)}>
                     <FontAwesomeIcon icon={faCaretDown} />
+                </button>
+                <span>{cat.score}</span>
+                <button onClick={() => vote(1)}>
+                    <FontAwesomeIcon icon={faCaretUp} />
                 </button>
             </div>
         </div>
