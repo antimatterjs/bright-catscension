@@ -9,7 +9,7 @@ type CatThumbProps = {
 };
 
 const CatThumb = ({ catId }: CatThumbProps) => {
-    const { cat, vote, toggleFavourite, updatingFavourites } = useCat(catId);
+    const { cat, vote, isVoting, toggleFavourite, updatingFavourites } = useCat(catId);
 
     return (
         <div className="cat-thumb">
@@ -23,11 +23,13 @@ const CatThumb = ({ catId }: CatThumbProps) => {
                 <img src={cat.url} />
             </div>
             <div role="group" className="cat-voting">
-                <button onClick={() => vote(-1)}>
+                <button onClick={() => vote(-1)}
+                 disabled={isVoting}>
                     <FontAwesomeIcon icon={faCaretDown} />
                 </button>
                 <span>{cat.score}</span>
-                <button onClick={() => vote(1)}>
+                <button onClick={() => vote(1)}
+                  disabled={isVoting}>
                     <FontAwesomeIcon icon={faCaretUp} />
                 </button>
             </div>
