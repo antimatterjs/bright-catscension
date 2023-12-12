@@ -1,6 +1,5 @@
-const ViteExpress = require("vite-express");
-
-const express = require('express');
+import ViteExpress from 'vite-express';
+import express from 'express';
 
 const app = express();
 const port = process.env.PORT || 3000;
