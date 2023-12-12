@@ -46,7 +46,7 @@ export async function favouriteCat(catId: string) {
     }
 }
 
-export async function unfavouriteCat(favouriteId: string) {
+export async function unfavouriteCat(favouriteId: number) {
     try {
         await catAPI.favourites.deleteFavourite(favouriteId);
     } catch (e) {

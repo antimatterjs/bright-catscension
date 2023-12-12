@@ -20,5 +20,6 @@ footer {
   flex-basis: 50px;
   padding: 12px 40px;
   background-color: var(--primary-dark);
-  color: var(--background-light)
+  color: var(--background-light);
+  text-align: right;;
 }

@@ -35,7 +35,7 @@ function App() {
                     </Routes>
                 </main>
                 <footer>
-                    <small>Built by Jonathan Stevens in 2023. He's available for hire, you know.</small>
+                    <small>Built by Jonathan Stevens in 2023 😺</small>
                 </footer>
             </QueryClientProvider>
         </BrowserRouter>

@@ -24,7 +24,7 @@ export default function useCat(catId: string): CatHelpers {
     });
 
     const { mutate: unfavourite } = useMutation({
-        mutationFn: () => catAPI.unfavouriteCat(catId),
+        mutationFn: (favouriteId: number) => catAPI.unfavouriteCat(favouriteId),
         onSuccess: () => queryClient.invalidateQueries(['favourites'])
     });
 

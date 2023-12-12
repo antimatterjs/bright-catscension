@@ -44,10 +44,22 @@ const UploadRoute = () => {
             {isUploading && <p>Uploading...</p>}
 
             <form role="form" onSubmit={handleSubmit}>
-                <label htmlFor="file">Upload a file</label>
-                <input type="file" id="file" onChange={handleChange} />
-                <button type="submit" disabled={!file}>Upload</button>
-                {fileURL && <button type="reset" onClick={() => setFile(null)}>Clear</button>}
+                <div className="uploader-container">
+                    <input type="file" id="file" aria-label="Upload a file"
+                    onChange={handleChange} />
+                </div>
+                
+                <div className="control-btns">
+                    <button type="submit" disabled={!file}>
+                        Upload
+                    </button>
+                    <button type="reset"
+                      onClick={() => setFile(null)}
+                      disabled={!file}>
+                        Clear
+                    </button>
+                </div>
+                
                 {error && <p role="alert">{error.message}</p>}
             </form>
         </div>
