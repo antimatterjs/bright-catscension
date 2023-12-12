@@ -1,0 +1,12 @@
+header {
+    width: 100%;
+    display: flex;
+    background-color: hotpink;
+    flex-basis: 100px;
+    justify-content: space-between;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}

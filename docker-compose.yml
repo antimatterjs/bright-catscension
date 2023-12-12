@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+  frontend:
+    build: .
+    expose:
+      - "5173"
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./src:/usr/app/src
+      - ./package.json:/usr/app/package.json
+      - ./vite.config.ts:/usr/app/vite.config.ts
+      - ./index.html:/usr/app/index.html
+    command: ["npm", "run", "dev"]
+    develop:
+      watch:
+        - action: sync
+          path: ./src
+          target: /usr/app/src
+          ignore:
+            - node_modules/
+        - action: rebuild
+          path: ./package.json
+          target: /usr/app/package.json
+        - action: rebuild
+          path: ./vite.config.ts
+          target: /usr/app/vite.config.ts
+        - action: sync
+          path: ./index.html
+          target: /usr/app/index.html
+
+  unit_tests:
+    build: .
+    command: ["npm", "run", "test"]
+    volumes:
+    - ./src:/usr/app/src
+    - ./package.json:/usr/app/package.json
+    - ./vite.config.ts:/usr/app/vite.config.ts
+    - ./index.html:/usr/app/index.html
