@@ -8,6 +8,7 @@ type CatAPIHelpers = {
     votes: Vote[];
     uploadCat: any; // returns whatever type useMutation returns. Would probably have to look through tanstack's github repo to find out what that is
     isLoading: boolean;
+    isUploading: boolean;
     favourites: Favourite[];
     updatingFavourites: boolean;
 }
@@ -30,7 +31,7 @@ export default function useCatAPI(): CatAPIHelpers {
         queryFn: catAPI.getFavourites,
     });
 
-    const { mutate: uploadCat } = useMutation({
+    const { mutate: uploadCat, isLoading: isUploading } = useMutation({
         mutationFn: catAPI.postCat,
         onSuccess: () => queryClient.invalidateQueries(['cats'])
     });
@@ -40,6 +41,7 @@ export default function useCatAPI(): CatAPIHelpers {
         votes,
         uploadCat,
         isLoading,
+        isUploading,
         favourites,
         updatingFavourites
     };

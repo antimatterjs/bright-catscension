@@ -8,7 +8,7 @@ const UploadRoute = () => {
     // TODO: If we have a file selected, but have not yet uploaded it,
     // we shoud display a dialog advising that the image has not been uploaded yet
     
-    const { uploadCat } = useCatAPI();
+    const { uploadCat, isUploading } = useCatAPI();
     const navigate = useNavigate();
 
     const [ file, setFile ] = useState<File | null>(null);
@@ -38,7 +38,11 @@ const UploadRoute = () => {
     return (
         <div className="upload-page">
             <h1>Upload your cats here!</h1>
+            
             {fileURL && <img src={fileURL} className="preview-img" alt="Preview" />}
+
+            {isUploading && <p>Uploading...</p>}
+
             <form role="form" onSubmit={handleSubmit}>
                 <label htmlFor="file">Upload a file</label>
                 <input type="file" id="file" onChange={handleChange} />
