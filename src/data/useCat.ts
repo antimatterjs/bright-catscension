@@ -10,6 +10,7 @@ type CatHelpers = {
     vote: (score: number) => void;
     isLoading: boolean;
     isVoting: boolean;
+    isFavouriting: boolean;
     updatingFavourites: boolean;
     toggleFavourite: () => void;
 }
@@ -19,12 +20,12 @@ export default function useCat(catId: string): CatHelpers {
 
     const queryClient = useQueryClient();
 
-    const { mutate: favourite } = useMutation({
+    const { mutate: favourite, isLoading: isFavouriting } = useMutation({
         mutationFn: () => catAPI.favouriteCat(catId),
         onSuccess: () => queryClient.invalidateQueries(['favourites'])
     });
 
-    const { mutate: unfavourite } = useMutation({
+    const { mutate: unfavourite, isLoading: isUnfavouriting } = useMutation({
         mutationFn: (favouriteId: number) => catAPI.unfavouriteCat(favouriteId),
         onSuccess: () => queryClient.invalidateQueries(['favourites'])
     });
@@ -69,6 +70,7 @@ export default function useCat(catId: string): CatHelpers {
         vote,
         isLoading,
         isVoting,
+        isFavouriting: isFavouriting || isUnfavouriting,
         updatingFavourites,
         toggleFavourite
     };

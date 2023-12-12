@@ -9,14 +9,14 @@ type CatThumbProps = {
 };
 
 const CatThumb = ({ catId }: CatThumbProps) => {
-    const { cat, vote, isVoting, toggleFavourite, updatingFavourites } = useCat(catId);
+    const { cat, vote, isVoting, isFavouriting, toggleFavourite, updatingFavourites } = useCat(catId);
 
     return (
         <div className="cat-thumb">
             <button type="button"
               className="favourite-btn"
               onClick={() => toggleFavourite()}
-              disabled={updatingFavourites}>
+              disabled={updatingFavourites || isFavouriting}>
                 <FontAwesomeIcon icon={cat.isFavourite ? faHeart : faHeartOutline} />
             </button>
             <div className="cat-img">
