@@ -1,8 +1,7 @@
 .upload-page {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    height: 100ch;
+    align-items: center;
 }
 
 .preview-img {

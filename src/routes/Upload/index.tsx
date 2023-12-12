@@ -5,6 +5,9 @@ import useCatAPI from '@/data/useCatAPI';
 
 
 const UploadRoute = () => {
+    // TODO: If we have a file selected, but have not yet uploaded it,
+    // we shoud display a dialog advising that the image has not been uploaded yet
+    
     const { uploadCat } = useCatAPI();
     const navigate = useNavigate();
 
@@ -19,7 +22,6 @@ const UploadRoute = () => {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        e.stopPropagation();
         setError(null);
         if (!file) return;
         uploadCat(

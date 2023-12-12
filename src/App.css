@@ -13,4 +13,12 @@ body {
 
 main {
   flex: 1;
+  padding: 0 40px;
+}
+
+footer {
+  flex-basis: 50px;
+  padding: 12px 40px;
+  background-color: var(--primary-dark);
+  color: var(--background-light)
 }

@@ -6,9 +6,9 @@
 
 :root {
     --primary: darkmagenta;
+    --primary-dark: darkslategrey;
     --highlight: gold;
     --highlight-tint: #f5aaaa;
-    --primary-shade: #cda434;
     --background-light: floralwhite;
 }
 
