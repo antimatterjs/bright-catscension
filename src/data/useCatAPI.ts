@@ -1,12 +1,10 @@
-import { useCallback, useMemo } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import * as catAPI from './api';
-import { Cat, CatVotingParams, Favourite, Vote } from './types';
-// import { CatUploadData, CatUploadCallbacks } from './types';
+import { BasicCat, Favourite, Vote } from './types';
 
 
 type CatAPIHelpers = {
-    cats: Cat[];
+    cats: BasicCat[];
     votes: Vote[];
     uploadCat: any; // returns whatever type useMutation returns. Would probably have to look through tanstack's github repo to find out what that is
     isLoading: boolean;

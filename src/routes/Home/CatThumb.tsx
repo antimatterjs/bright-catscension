@@ -6,11 +6,7 @@ type CatThumbProps = {
 };
 
 const CatThumb = ({ catId }: CatThumbProps) => {
-    const { cat, submitVote, toggleFavourite, updatingFavourites } = useCat(catId);
-    console.log(cat);
-    const vote = (score: number) => {
-        submitVote({ score });
-    }
+    const { cat, vote, toggleFavourite, updatingFavourites } = useCat(catId);
 
     return (
         <div className="cat-thumb">

@@ -7,14 +7,18 @@ export type CatUploadCallbacks = {
     onError: (error: Error) => void;
 };
 
-export type Cat = {
+export type BasicCat = {
     id: string;
     url: string;
     width: number;
     height: number;
     score: number;
-    favourite?: boolean;
 };
+
+export type Cat = BasicCat & {
+    favouriteData: Favourite;
+    isFavourite: boolean;
+}
 
 export type Favourite = {
     id: string;

@@ -7,7 +7,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 type CatHelpers = {
     cat: Cat;
-    submitVote: (score: number) => void;
+    vote: (score: number) => void;
     isLoading: boolean;
     updatingFavourites: boolean;
     toggleFavourite: () => void;
@@ -28,8 +28,8 @@ export default function useCat(catId: string): CatHelpers {
         onSuccess: () => queryClient.invalidateQueries(['favourites'])
     });
 
-    const { mutate: submitVote } = useMutation({
-        mutationFn: (params: { score: number }) => catAPI.judgeCat({ ...params, catId }),
+    const { mutate: vote } = useMutation({
+        mutationFn: (score: number) => catAPI.judgeCat({ score, catId }),
         onSuccess: () => queryClient.invalidateQueries(['votes'])
     });
 
@@ -65,7 +65,7 @@ export default function useCat(catId: string): CatHelpers {
 
     return {
         cat,
-        submitVote,
+        vote,
         isLoading,
         updatingFavourites,
         toggleFavourite
