@@ -14,7 +14,7 @@ const Home = () => {
                 <CatThumb key={cat.id} catId={cat.id} />
             )) : <p>There are no cats to show</p>}
 
-            {cats?.length > 10 ? (
+            {cats?.length >= 10 ? (
                 <p><strong>TODO:</strong> Add pagination</p>
             ) : null}
         </div>
