@@ -1,24 +1,27 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import * as catAPI from './api';
 import { BasicCat, Favourite, Vote } from './types';
-
+import { useParams } from 'react-router-dom';
 
 type CatAPIHelpers = {
     cats: BasicCat[];
     votes: Vote[];
     uploadCat: any; // returns whatever type useMutation returns. Would probably have to look through tanstack's github repo to find out what that is
     isLoading: boolean;
+    isError: boolean;
     isUploading: boolean;
     favourites: Favourite[];
     updatingFavourites: boolean;
 }
 
 export default function useCatAPI(): CatAPIHelpers {
+    const { page } = useParams<{ page: string }>();
+    const pageNumber = page ? parseInt(page, 10) : 0;
     const queryClient = useQueryClient();
 
-    const { data: cats, isLoading } = useQuery({
-        queryKey: ['cats'],
-        queryFn: catAPI.getCats,
+    const { data: cats, isLoading, isError } = useQuery({
+        queryKey: ['cats', pageNumber],
+        queryFn: () => catAPI.getCats(pageNumber),
     });
 
     const { data: votes } = useQuery({
@@ -41,6 +44,7 @@ export default function useCatAPI(): CatAPIHelpers {
         votes,
         uploadCat,
         isLoading,
+        isError,
         isUploading,
         favourites,
         updatingFavourites

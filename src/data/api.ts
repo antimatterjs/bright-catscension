@@ -12,9 +12,9 @@ export async function postCat(data: CatUploadData) {
     }
 }
 
-export async function getCats() {
+export async function getCats(page: number) {
     try {
-        const cats = await catAPI.images.getImages({ limit: 10 });
+        const cats = await catAPI.images.getImages({ limit: 10, page });
         return cats;
     } catch (e) {
         throw new Error('Failed to fetch cats');

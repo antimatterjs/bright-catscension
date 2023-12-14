@@ -16,20 +16,18 @@ const UploadRoute = () => {
 
     const fileURL = useMemo(() => file ? URL.createObjectURL(file) : null, [file]);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setFile(e.target.files?.[0] || null);
     }
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
         e.preventDefault();
         setError(null);
         if (!file) return;
         uploadCat(
             { file },
             {
-                onSuccess: () => {
-                    navigate('/');
-                },
+                onSuccess: () => navigate('/'),
                 onError: (error: Error) => setError(error)
             }
         );
@@ -46,7 +44,8 @@ const UploadRoute = () => {
             <form role="form" onSubmit={handleSubmit}>
                 <div className="uploader-container">
                     <input type="file" id="file" aria-label="Upload a file"
-                    onChange={handleChange} />
+                      accept="image/*"
+                      onChange={handleChange} />
                 </div>
                 
                 <div className="control-btns">

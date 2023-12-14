@@ -55,7 +55,6 @@ export default function useCat(catId: string): CatHelpers {
             score
         } : {};
     }, [cats, catId, favouriteData, score]);
-
     
     const toggleFavourite = () => {
         if (favouriteData) {

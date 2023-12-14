@@ -2,6 +2,7 @@ import './App.css';
 import {
     Route,
     Routes,
+    Navigate,
     BrowserRouter,
 } from "react-router-dom";
 import {
@@ -30,7 +31,8 @@ function App() {
                 <Header />
                 <main>
                     <Routes>
-                        <Route path="/" element={<Home />} />
+                        <Route path="/" element={<Navigate replace to="/0" />} />
+                        <Route path="/:page" element={<Home />} />
                         <Route path="upload" element={<Upload />} />
                     </Routes>
                 </main>

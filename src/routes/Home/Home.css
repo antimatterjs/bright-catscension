@@ -47,3 +47,18 @@
     display: flex;
     justify-content: space-between;
 }
+
+.pagination {
+    margin: 20px auto;
+    max-width: 1280px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.pagination button {
+    margin-left: 4px;
+}
+
+.pagination em {
+    margin-right: 8px;
+}

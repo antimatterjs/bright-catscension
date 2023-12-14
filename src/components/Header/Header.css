@@ -41,4 +41,26 @@ nav ul li a {
     border-radius: 4px;
     text-decoration: none;
     border: 2px dashed var(--highlight-tint);
+    position: relative;
+}
+
+nav ul li a:before {
+    content: '';
+    width: 100%;
+    background-color: yellow;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    padding: 4px;
+    box-sizing: border-box;
+}
+
+nav ul li a:hover {
+    background-color: var(--highlight-shade);
+}
+
+nav ul li a:active {
+    color: white;
 }
