@@ -1,5 +1,5 @@
 import { TheCatAPI } from '@thatapicompany/thecatapi';
-import { CatUploadData, CatVotingParams } from './types';
+import { BasicCat, CatUploadData, CatVotingParams, Favourite, Vote } from './types';
 
 const CAT_API_KEY = 'live_vN91Xl6mWJDvOj37Hmb8Nqd3AiVE5grShN5aJpnYVr9BWkvnnyU2WBcjiMWS4CsB';
 const catAPI = new TheCatAPI(CAT_API_KEY);
@@ -12,16 +12,16 @@ export async function postCat(data: CatUploadData) {
     }
 }
 
-export async function getCats(page: number) {
+export async function getCats(page: number): Promise<BasicCat[]> {
     try {
-        const cats = await catAPI.images.getImages({ limit: 10, page });
+        const cats = await catAPI.images.getImages({ limit: 10, page: page - 1 });
         return cats;
     } catch (e) {
         throw new Error('Failed to fetch cats');
     }
 }
 
-export async function getVotes() {
+export async function getVotes(): Promise<Vote[]> {
     try {
         const votes = await catAPI.votes.getVotes();
         return votes;
@@ -54,7 +54,7 @@ export async function unfavouriteCat(favouriteId: number) {
     }
 }
 
-export async function getFavourites() {
+export async function getFavourites(): Promise<Favourite[]> {
     try {
         const favourites = await catAPI.favourites.getFavourites();
         return favourites;

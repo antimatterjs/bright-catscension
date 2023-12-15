@@ -31,7 +31,7 @@ function App() {
                 <Header />
                 <main>
                     <Routes>
-                        <Route path="/" element={<Navigate replace to="/0" />} />
+                        <Route path="/" element={<Navigate replace to="/1" />} />
                         <Route path="/:page" element={<Home />} />
                         <Route path="upload" element={<Upload />} />
                     </Routes>

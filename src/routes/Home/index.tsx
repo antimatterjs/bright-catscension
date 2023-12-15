@@ -36,8 +36,8 @@ const Home = () => {
                     </div>
                 </>
              ) : (
-                pageNumber > 0 ? (
-                    <Navigate replace to="/0" />
+                pageNumber > 1 ? (
+                    <Navigate replace to="/1" />
                 ) : <p>There are no cats to show</p>
             )}
         </div>
