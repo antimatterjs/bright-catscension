@@ -22,7 +22,7 @@ const Home = () => {
                 <>
                     <div className="pagination">
                         <em>Now with lightning fast pagination!</em>
-                        <button onClick={() => navigate(`/${pageNumber - 1}`)} disabled={pageNumber < 1}>
+                        <button onClick={() => navigate(`/${Math.max(1, pageNumber - 1)}`)} disabled={pageNumber <= 1}>
                             <FontAwesomeIcon icon={faCaretLeft} />
                         </button>
                         <button onClick={() => navigate(`/${pageNumber + 1}`)} disabled={cats.length < 10}>
